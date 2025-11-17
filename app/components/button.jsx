@@ -5,7 +5,7 @@ export default function Button({
 	...props
 }) {
 	const baseStyles =
-		"w-fit h-fit px-5 py-4 rounded-lg font-medium transition-all duration-200 transition-transform cursor-pointer";
+		"w-fit h-fit px-5 py-3 rounded-lg font-medium transition-all duration-200 transition-transform cursor-pointer";
 
 	const variants = {
 		primary:

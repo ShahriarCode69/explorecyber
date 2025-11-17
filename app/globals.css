@@ -35,7 +35,7 @@ body {
 }
 
 .heading-xl {
-  @apply text-4xl text-light leading-9 font-extrabold md:text-5xl md:leading-17 lg:text-7xl lg:leading-23;
+  @apply text-4xl text-light leading-9 font-bold md:text-5xl md:leading-17 lg:text-7xl lg:leading-23;
 }
 .heading-md {
   @apply text-3xl text-light leading-8 font-bold md:text-4xl md:leading-14 lg:text-6xl lg:leading-20;
@@ -47,7 +47,7 @@ body {
   @apply text-lg text-light leading-7 font-semibold md:text-2xl md:leading-8 lg:text-4xl lg:leading-12;
 }
 .description {
-  @apply max-w-[40ch] text-sm text-white/75;
+  @apply max-w-[60ch] text-base text-white/75;
 }
 
 .btn-gradient {
