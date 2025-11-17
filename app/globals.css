@@ -1,26 +1,59 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-primary: oklch(42.80% 0.267 275.79);
+  --color-accent: oklch(63.76% 0.230 24.84);
+  --color-dark: oklch(8.52% 0.038 274.56);
+  --color-light: oklch(97.61% 0.000 0);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-primary: #3C00DC;
+  --color-accent: #F8333C;
+  --color-dark: #01010C;
+  --color-light: #F7F7F7;
+  --color-gradientDark: #02020C;
+  --color-gradientLight: #141426
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-dark);
+  color: var(--color-light);
+  font-family: var(--font-funnel-display);
+}
+
+.container {
+  @apply mx-auto w-full max-w-screen-2xl;
+}
+
+.section {
+  @apply mt-28 md:mt-48; /* adjust as needed */
+}
+
+.mx {
+  @apply px-6 md:px-12 lg:px-20 xl:px-32; /* Adjust for screens */
+}
+
+.heading-xl {
+  @apply text-4xl text-light leading-9 font-extrabold md:text-5xl md:leading-17 lg:text-7xl lg:leading-23;
+}
+.heading-md {
+  @apply text-3xl text-light leading-8 font-bold md:text-4xl md:leading-14 lg:text-6xl lg:leading-20;
+}
+.heading-sm {
+  @apply text-2xl text-light leading-8 font-semibold md:text-3xl md:leading-12 lg:text-5xl lg:leading-16;
+}
+.subtitle {
+  @apply text-lg text-light leading-7 font-semibold md:text-2xl md:leading-8 lg:text-4xl lg:leading-12;
+}
+.description {
+  @apply max-w-[40ch] text-sm text-white/75;
+}
+
+.btn-gradient {
+  background-image: linear-gradient(in oklch to bottom right, var(--accent), var(--primary));
+}
+
+.flex-center {
+  @apply flex items-center justify-center;
 }
