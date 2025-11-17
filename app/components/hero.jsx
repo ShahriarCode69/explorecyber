@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./button";
+import Stats from "./stats";
 
 export default function Hero() {
 	return (
@@ -19,6 +20,7 @@ export default function Hero() {
 					<Button>Explore Services</Button>
 				</div>
 			</div>
+			<Stats/>
 		</section>
 	);
 }
