@@ -41,7 +41,7 @@ body {
   @apply text-3xl text-light leading-8 font-bold md:text-4xl md:leading-14 lg:text-6xl lg:leading-18;
 }
 .heading-sm {
-  @apply text-2xl text-light leading-8 font-semibold md:text-3xl md:leading-12 lg:text-5xl lg:leading-16;
+  @apply text-2xl text-light leading-8 font-semibold md:text-3xl md:leading-12 lg:text-5xl lg:leading-13;
 }
 .subtitle {
   @apply text-lg text-light leading-7 font-semibold md:text-2xl md:leading-8 lg:text-4xl lg:leading-12;

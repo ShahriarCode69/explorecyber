@@ -6,7 +6,7 @@ export default function About() {
 	return (
     <section className="section mx container flex flex-col gap-12">
       <div className='flex flex-col gap-4 md:gap-6'>
-        <span className="text-base uppercase md:text-xl">About Us</span>
+        <p className="text-base uppercase md:text-xl">About Us</p>
         <h2 className='heading-md'>
           “We detect and fix threats <span className='text-light/38'>before hackers strike</span> — fast and reliable”
         </h2>
