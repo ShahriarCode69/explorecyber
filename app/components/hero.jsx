@@ -4,7 +4,7 @@ import Stats from "./stats";
 
 export default function Hero() {
 	return (
-		<section className='bg-[url("/backgrounds/heroBg.svg")] bg-cover bg-center h-screen'>
+		<section className='bg-[url("/backgrounds/heroBg.png")] bg-cover bg-bottom h-auto'>
 			<div className="container pt-48 flex-center flex-col gap-10">
 				<div className="text-center flex-center flex-col">
 					<h1 className="heading-xl leading-5">

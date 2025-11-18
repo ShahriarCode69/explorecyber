@@ -57,7 +57,7 @@ const StatsCardColumn = () => {
   ];
 
   return (
-    <div className="section container">
+    <div className="section container mx">
       <div className="mx-auto max-w-5xl">
         <div className="grid grid-cols-1 gap-3 md:grid-cols-4">
           {statsData.map((stat, index) => (

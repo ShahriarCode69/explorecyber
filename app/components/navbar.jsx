@@ -12,7 +12,7 @@ export default function Navbar() {
 	];
 
 	return (
-		<header className="fixed inset-0 w-fit mx-auto mt-6">
+		<header className="fixed inset-0 w-fit h-fit mx-auto mt-6 z-99">
 			<nav className="px-3 py-3 flex bg-gradient-to-b from-gradientLight to-gradientDark rounded-xl items-center justify-evenly border-2 border-light/13 gap-10">
 				<Image className="w-28" src={LogoImage} alt="" />
 				<ul className="flex justify-center items-center gap-6">
