@@ -47,7 +47,7 @@ body {
   @apply text-lg text-light leading-7 font-semibold md:text-2xl md:leading-8 lg:text-4xl lg:leading-12;
 }
 .description {
-  @apply max-w-[60ch] text-base text-white/75;
+  @apply max-w-[55ch] text-base text-white/75;
 }
 
 .flex-center {
