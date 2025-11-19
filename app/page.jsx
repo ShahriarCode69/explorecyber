@@ -4,6 +4,7 @@ import About from "./components/about";
 import Services from "./components/services";
 import Cta from "./components/cta";
 import Footer from "./components/footer";
+import WhyChooseUs from "./components/whychooseus";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
      <LogoCloud/>
      <About/>
      <Services/>
+     <WhyChooseUs/>
      <Cta/>
      <Footer/>
    </main>
