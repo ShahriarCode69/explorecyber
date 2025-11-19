@@ -5,6 +5,7 @@ import Services from "./components/services";
 import Cta from "./components/cta";
 import Footer from "./components/footer";
 import WhyChooseUs from "./components/whychooseus";
+import Expertise from "./components/expertise";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
      <About/>
      <Services/>
      <WhyChooseUs/>
+     <Expertise/>
      <Cta/>
      <Footer/>
    </main>

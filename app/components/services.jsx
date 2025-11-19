@@ -40,7 +40,7 @@ export default function Services() {
     <section className='h-auto bg-[url("/backgrounds/serviceBg.png")] bg-cover bg-center pb-12'>
       <div className="mx section mx-auto w-full max-w-screen-xl">
         <p className="mb-4 text-center text-base uppercase md:text-xl">
-          About Us
+          Our services
         </p>
         <h2 className="heading-sm mx-auto mb-12 max-w-[30ch] text-center">
           Protect Your Business with Our Cutting-Edge Cybersecurity Solutions
