@@ -6,6 +6,7 @@ import Cta from "./components/cta";
 import Footer from "./components/footer";
 import WhyChooseUs from "./components/whychooseus";
 import Expertise from "./components/expertise";
+import Testimonials from "./components/testimonials";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
      <Services/>
      <WhyChooseUs/>
      <Expertise/>
+     <Testimonials/>
      <Cta/>
      <Footer/>
    </main>
