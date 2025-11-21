@@ -2,6 +2,7 @@ export default function Button({
 	variant = "primary",
 	children,
 	className = "",
+	href,
 	...props
 }) {
 	const baseStyles =
@@ -20,11 +21,12 @@ export default function Button({
   };
 
 	return (
-		<button
+		<a
+			href={href}
 			className={`${baseStyles} ${variants[variant]} ${className}`}
 			{...props}
 		>
 			{children}
-		</button>
+		</a>
 	);
 }

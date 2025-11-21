@@ -25,9 +25,8 @@ export default function WhyChooseUs() {
 
         <div className="mt-4">
           {benefits.map((benefit, index) => (
-            <div className="mb-3 flex items-center gap-2 text-sm">
+            <div key={index} className="mb-3 flex items-center gap-2 text-sm">
               <div
-                key={index}
                 className="bg-accent flex-center h-8 w-8 rounded-full"
               >
                 <FaCheck size={12} color="#01010c" />

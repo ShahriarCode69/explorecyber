@@ -9,6 +9,8 @@ import Expertise from "./components/expertise";
 import Testimonials from "./components/testimonials";
 import Contact from "./components/contact";
 import FAQSection from "./components/faqsection";
+import WhenSection from "./components/whensection";
+import WorkSection from "./components/worksection";
 
 export default function Home() {
   return (
@@ -18,8 +20,11 @@ export default function Home() {
      <About/>
      <Services/>
      <WhyChooseUs/>
-     <Expertise/>
+     <WorkSection/>
      <Testimonials/>
+     <Expertise/>
+     <WhenSection/>
+     
      <FAQSection/>
      <Cta/>
      <Contact/>

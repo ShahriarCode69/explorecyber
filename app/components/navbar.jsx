@@ -22,7 +22,7 @@ export default function Navbar() {
 						</li>
 					))}
 				</ul>
-				<Button>Get Started</Button>
+				<Button href={"#contact"}>Get Started</Button>
 			</nav>
 		</header>
 	);

@@ -52,6 +52,11 @@
   --color-gradientLight: #141426;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding: 10rem;
+}
+
 body {
   background: var(--color-dark);
   color: var(--color-light);

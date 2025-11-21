@@ -5,7 +5,7 @@ import contactForm from "@/public/images/contactForm.png";
 
 export default function Contact() {
   return (
-    <section className="section mx-auto w-full max-w-5xl px-4">
+    <section id="contact" className="section mx-auto w-full max-w-5xl px-4">
       <h2 className="heading-sm mx-auto mb-14 max-w-[30ch] text-center">
         Get in touch
       </h2>
