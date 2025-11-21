@@ -4,10 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --color-primary: oklch(42.80% 0.267 275.79);
-  --color-accent: oklch(63.76% 0.230 24.84);
+  --color-primary: oklch(42.8% 0.267 275.79);
+  --color-accent: oklch(63.76% 0.23 24.84);
   --color-dark: oklch(8.52% 0.038 274.56);
-  --color-light: oklch(97.61% 0.000 0);
+  --color-light: oklch(97.61% 0 0);
 
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -16,13 +16,13 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(42.80% 0.267 275.79);
+  --primary: oklch(42.8% 0.267 275.79);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(63.76% 0.230 24.84);
+  --accent: oklch(63.76% 0.23 24.84);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
@@ -44,12 +44,12 @@
 }
 
 @theme {
-  --color-primary: #3C00DC;
-  --color-accent: #F8333C;
-  --color-dark: #01010C;
-  --color-light: #F7F7F7;
-  --color-gradientDark: #02020C;
-  --color-gradientLight: #141426
+  --color-primary: #3c00dc;
+  --color-accent: #f8333c;
+  --color-dark: #01010c;
+  --color-light: #f7f7f7;
+  --color-gradientDark: #02020c;
+  --color-gradientLight: #141426;
 }
 
 body {
@@ -71,16 +71,16 @@ body {
 }
 
 .heading-xl {
-  @apply text-4xl text-light leading-9 font-bold md:text-5xl md:leading-17 lg:text-7xl lg:leading-23;
+  @apply text-light text-4xl leading-9 font-bold md:text-5xl md:leading-17 lg:text-7xl lg:leading-23;
 }
 .heading-md {
-  @apply text-3xl text-light leading-8 font-bold md:text-4xl md:leading-14 lg:text-6xl lg:leading-18;
+  @apply text-light text-3xl leading-8 font-bold md:text-4xl md:leading-14 lg:text-6xl lg:leading-18;
 }
 .heading-sm {
-  @apply text-2xl text-light leading-8 font-semibold md:text-3xl md:leading-12 lg:text-5xl lg:leading-13;
+  @apply text-light text-2xl leading-8 font-semibold md:text-3xl md:leading-12 lg:text-5xl lg:leading-13;
 }
 .subtitle {
-  @apply text-lg text-light leading-7 font-semibold md:text-2xl md:leading-8 lg:text-4xl lg:leading-12;
+  @apply text-light text-lg leading-7 font-semibold md:text-2xl md:leading-8 lg:text-4xl lg:leading-12;
 }
 .description {
   @apply max-w-[55ch] text-base text-white/75;
@@ -129,19 +129,19 @@ body {
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   @keyframes marquee {
-  from {
-    transform: translateX(0);
+    from {
+      transform: translateX(0);
     }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
     }
   }
   @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
+    from {
+      transform: translateY(0);
     }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
     }
   }
 }
