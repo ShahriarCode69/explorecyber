@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { getNames } from "country-list";
 import { FaShieldAlt } from "react-icons/fa";
 import Button from "./button";
 import toast, { Toaster } from "react-hot-toast";
@@ -215,10 +216,13 @@ export default function CyberSecurityForm() {
     }
   };
 
+  const countries = getNames().sort((a, b) => a.localeCompare(b));
+
   // Generate 24-hour times
   const hours = Array.from({ length: 24 }, (_, i) => {
-    const hour = i.toString().padStart(2, "0");
-    return `${hour}:00`;
+    const hour12 = i === 0 ? 12 : i > 12 ? i - 12 : i;
+    const period = i >= 12 ? "PM" : "AM";
+    return `${hour12.toString().padStart(2, "0")}:00 ${period}`;
   });
 
   return (
@@ -296,33 +300,19 @@ export default function CyberSecurityForm() {
             className="rounded-lg border border-white/20 bg-white/5 p-3 text-white transition-all focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:opacity-50"
             style={{ color: form.country ? "#fff" : "rgba(255,255,255,0.6)" }}
           >
-            <option value="" className="bg-gradientLight outline-none">
-              Country / Time Zone *
+            <option value="" className="bg-gradientLight">
+              Select Your Country *
             </option>
-            <option value="USA (EST)" className="bg-gradientLight">
-              USA (EST)
-            </option>
-            <option value="USA (PST)" className="bg-gradientLight">
-              USA (PST)
-            </option>
-            <option value="UK (GMT)" className="bg-gradientLight">
-              UK (GMT)
-            </option>
-            <option value="Europe (CET)" className="bg-gradientLight">
-              Europe (CET)
-            </option>
-            <option value="Australia (AEST)" className="bg-gradientLight">
-              Australia (AEST)
-            </option>
-            <option value="Canada (EST)" className="bg-gradientLight">
-              Canada (EST)
-            </option>
-            <option value="UAE (GST)" className="bg-gradientLight">
-              UAE (GST)
-            </option>
-            <option value="Asia (GMT+6)" className="bg-gradientLight">
-              Asia (GMT+6)
-            </option>
+
+            {countries.map((country) => (
+              <option
+                key={country}
+                value={country}
+                className="bg-gradientLight"
+              >
+                {country}
+              </option>
+            ))}
           </select>
 
           {/* Service of Interest */}
@@ -342,19 +332,40 @@ export default function CyberSecurityForm() {
               Penetration Testing
             </option>
             <option value="Security Audit" className="bg-gradientLight">
-              Security Audit
+              Web Security
             </option>
-            <option value="Vulnerability Assessment" className="bg-gradientLight">
-              Vulnerability Assessment
+            <option
+              value="Vulnerability Assessment"
+              className="bg-gradientLight"
+            >
+              App Security
             </option>
             <option value="SOC Monitoring" className="bg-gradientLight">
+              Cloud Security
+            </option>
+            <option
+              value="Malware Protection Setup"
+              className="bg-gradientLight"
+            >
+              Network Security
+            </option>
+            <option
+              value="Full Cyber Security Package"
+              className="bg-gradientLight"
+            >
               SOC Monitoring
             </option>
-            <option value="Malware Protection Setup" className="bg-gradientLight">
-              Malware Protection Setup
+            <option
+              value="Full Cyber Security Package"
+              className="bg-gradientLight"
+            >
+              Compliance Management
             </option>
-            <option value="Full Cyber Security Package" className="bg-gradientLight">
-              Full Cyber Security Package
+            <option
+              value="Full Cyber Security Package"
+              className="bg-gradientLight"
+            >
+              Incident Response
             </option>
           </select>
 
@@ -381,9 +392,6 @@ export default function CyberSecurityForm() {
             </option>
             <option value="Email" className="bg-gradientLight">
               Email
-            </option>
-            <option value="Telegram" className="bg-gradientLight">
-              Telegram
             </option>
           </select>
 

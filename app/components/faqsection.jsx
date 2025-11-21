@@ -44,7 +44,7 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="bg-dark container section px-4 py-16 text-white sm:px-6 lg:px-8">
+    <div className="bg-dark container section text-white">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="mb-12 text-center">
@@ -74,7 +74,7 @@ const FAQSection = () => {
               {/* Question Button */}
               <button
                 onClick={() => toggleAccordion(index)}
-                className="flex w-full items-center justify-between p-6 text-left transition-all duration-300"
+                className="flex w-full items-center justify-between p-5 text-left transition-all duration-300"
               >
                 <span className="pr-8 text-lg font-medium">{faq.question}</span>
                 <div className="relative h-6 w-6 flex-shrink-0">
