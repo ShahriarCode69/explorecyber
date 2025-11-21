@@ -8,6 +8,7 @@ import WhyChooseUs from "./components/whychooseus";
 import Expertise from "./components/expertise";
 import Testimonials from "./components/testimonials";
 import Contact from "./components/contact";
+import FAQSection from "./components/faqsection";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
      <WhyChooseUs/>
      <Expertise/>
      <Testimonials/>
+     <FAQSection/>
      <Cta/>
      <Contact/>
      <Footer/>

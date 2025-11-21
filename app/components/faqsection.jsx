@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react";
 import { FaQuestionCircle } from "react-icons/fa";
 
@@ -42,11 +44,11 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black px-4 py-16 text-white sm:px-6 lg:px-8">
+    <div className="bg-dark container section px-4 py-16 text-white sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="mb-12 text-center">
-          <div className="mb-4 flex items-center justify-center gap-2">
+          <div className="mb-4 border-2 border-white/8 rounded-xl p-2 inline-flex items-center justify-center gap-2">
             <FaQuestionCircle className="text-2xl text-gray-400" />
             <span className="text-sm tracking-wider text-gray-400 uppercase">
               FAQS
@@ -63,22 +65,16 @@ const FAQSection = () => {
         </div>
 
         {/* Accordion */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="relative overflow-hidden rounded-2xl border border-gray-800"
-              style={{
-                background:
-                  openIndex === index
-                    ? "linear-gradient(to bottom, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1))"
-                    : "transparent",
-              }}
+              className="relative overflow-hidden rounded-2xl border-2 border-white/8 bg-gradient-to-b from-transparent to-[#ABABAB]/6"
             >
               {/* Question Button */}
               <button
                 onClick={() => toggleAccordion(index)}
-                className="flex w-full items-center justify-between p-6 text-left transition-all duration-300 hover:bg-gray-900/50"
+                className="flex w-full items-center justify-between p-6 text-left transition-all duration-300"
               >
                 <span className="pr-8 text-lg font-medium">{faq.question}</span>
                 <div className="relative h-6 w-6 flex-shrink-0">
@@ -137,7 +133,7 @@ const FAQSection = () => {
                     : "max-h-0 opacity-0"
                 }`}
               >
-                <div className="px-6 pb-6 leading-relaxed text-gray-300">
+                <div className="px-6 pb-6 leading-relaxed text- text-gray-300">
                   {faq.answer}
                 </div>
               </div>
