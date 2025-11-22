@@ -11,6 +11,7 @@ import Contact from "./components/contact";
 import FAQSection from "./components/faqsection";
 import WhenSection from "./components/whensection";
 import WorkSection from "./components/worksection";
+import CaseStudy from "./components/casestudy";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
      <Services/>
      <WhyChooseUs/>
      <WorkSection/>
+     <CaseStudy/>
      <Testimonials/>
      <Expertise/>
      <WhenSection/>

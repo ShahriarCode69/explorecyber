@@ -44,7 +44,7 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="bg-dark container section text-white">
+    <div className="bg-dark container section mx text-white">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="mb-12 text-center">

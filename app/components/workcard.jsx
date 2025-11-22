@@ -14,7 +14,7 @@ export default function WorkCard({
     <div
       className={`w-full border-2 border-white/10 ${
         isLight ? "bg-light" : "bg-gradient-to-b from-gradientDark to-gradientLight"
-      } rounded-3xl p-8 md:p-12`}
+      } rounded-3xl p-6`}
     >
       <div className="flex flex-col items-center gap-8 lg:flex-row lg:gap-12">
         {/* Text Content */}

@@ -95,6 +95,44 @@ body {
   @apply flex items-center justify-center;
 }
 
+.my-pagination .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #4B4B67; /* tailwind gray-300 */
+  opacity: 1;
+  border-radius: 9999px;
+  margin: 0 6px;
+  transition: all 250ms ease;
+  display: inline-block;
+}
+
+/* active bullet — pill / rounded */
+.my-pagination .swiper-pagination-bullet-active {
+  width: 32px;
+  height: 10px;
+  background: var(--color-accent); /* tailwind gray-900 */
+  border-radius: 9999px;
+}
+
+/* make clickable bullets have pointer cursor */
+.my-pagination .swiper-pagination-bullet {
+  cursor: pointer;
+}
+
+/* optional: adjust layout when few bullets present */
+.my-pagination {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* responsive tweak: reduce bullet width on very small screens */
+@media (max-width: 420px) {
+  .my-pagination .swiper-pagination-bullet-active {
+    width: 22px;
+  }
+}
+
 @theme inline {
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
