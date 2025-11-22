@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <section className='h-auto bg-[url("/backgrounds/heroBg.png")] bg-cover bg-bottom'>
-      <div className="flex-center container flex-col gap-10 pt-48">
+      <div className="flex-center container mx flex-col gap-10 pt-48">
         <div className="flex-center flex-col text-center">
           <h1 className="heading-xl leading-5">
             Securing Today, <br /> Defending Tomorrow

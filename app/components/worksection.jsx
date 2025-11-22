@@ -37,7 +37,7 @@ export default function WorkSection() {
   return (
     <div id="works" className="mx section bg-dark container p-4 md:p-8">
       <p className="mb-4 text-center text-base uppercase md:text-xl">
-        Our services
+        Our Works
       </p>
       <h2 className="heading-sm mx-auto mb-12 max-w-[30ch] text-center">
         Protect Your Business with Our Cutting-Edge Cybersecurity Solutions
