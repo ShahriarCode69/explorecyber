@@ -35,7 +35,7 @@ export default function WorkSection() {
   ];
 
   return (
-    <div className="mx section bg-dark container p-4 md:p-8">
+    <div id="works" className="mx section bg-dark container p-4 md:p-8">
       <p className="mb-4 text-center text-base uppercase md:text-xl">
         Our services
       </p>

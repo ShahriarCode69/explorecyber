@@ -1,10 +1,11 @@
 import LogoImage from "@/public/logo.svg";
 import Image from "next/image";
 import Button from "./button";
+import Link from "next/link";
 
 export default function Navbar() {
 	const navLinks = [
-		{ label: "Home", href: "#" },
+		{ label: "Home", href: "/" },
 		{ label: "About", href: "#about" },
 		{ label: "Services", href: "#services" },
 		{ label: "Works", href: "#works" },
@@ -18,7 +19,7 @@ export default function Navbar() {
 				<ul className="flex justify-center items-center gap-6">
 					{navLinks.map((link) => (
 						<li key={link.label}>
-							<a className="transition-all duration-300 hover:text-accent" href={link.href}>{link.label}</a>
+							<Link className="transition-all duration-300 hover:text-accent" href={link.href}>{link.label}</Link>
 						</li>
 					))}
 				</ul>

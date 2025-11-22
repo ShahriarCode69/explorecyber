@@ -3,6 +3,7 @@ import "./globals.css";
 
 import Navbar from "./components/navbar";
 import LenisProvider from "./components/LenisProvider";
+import Footer from "./components/footer";
 
 const funnelDisplay = Funnel_Display({
   variable: "--font-funnel-display",
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
         <LenisProvider>
           <Navbar />
           {children}
+          <Footer/>
         </LenisProvider>
       </body>
     </html>

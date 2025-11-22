@@ -37,7 +37,7 @@ export default function Services() {
   ];
 
   return (
-    <section className='h-auto bg-[url("/backgrounds/serviceBg.png")] bg-cover bg-center pb-12'>
+    <section id="services" className='h-auto bg-[url("/backgrounds/serviceBg.png")] bg-cover bg-center pb-12'>
       <div className="mx section mx-auto w-full max-w-screen-xl">
         <p className="mb-4 text-center text-base uppercase md:text-xl">
           Our services

@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { getNames } from "country-list";
 import { FaShieldAlt } from "react-icons/fa";
-import Button from "./button";
 import toast, { Toaster } from "react-hot-toast";
+import Button from "./button";
 
-export default function CyberSecurityForm() {
+export default function BookDemoForm() {
+
+
   const [form, setForm] = useState({
     fullName: "",
     phone: "",
@@ -14,16 +16,16 @@ export default function CyberSecurityForm() {
     company: "",
     country: "",
     service: "",
+    demoDate: "",
+    demoTime: "",
     contactMethod: "",
-    bestTime: "",
     message: "",
   });
 
   const [status, setStatus] = useState(null);
 
   // Replace with YOUR Apps Script Web App URL:
-  const SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbwVW6FqdamShT9FDKblD8oftaFP3fLoeP_Er_39yVyU7RG1NlEwKNVhVZqlodE0b8fQ6Q/exec";
+  const SCRIPT_URL = process.env.NEXT_PUBLIC_BOOK_DEMO_FORM_SCRIPT;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -73,13 +75,25 @@ export default function CyberSecurityForm() {
       return false;
     }
 
+    if (!form.email.trim()) {
+      toast.error("Please enter your email address");
+      return false;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      toast.error("Please enter a valid email address");
+      return false;
+    }
+
     if (!form.company.trim()) {
       toast.error("Please enter your company/organization name");
       return false;
     }
 
     if (!form.country) {
-      toast.error("Please select your country/timezone");
+      toast.error("Please select your country");
       return false;
     }
 
@@ -88,13 +102,18 @@ export default function CyberSecurityForm() {
       return false;
     }
 
-    if (!form.contactMethod) {
-      toast.error("Please select your preferred contact method");
+    if (!form.demoDate) {
+      toast.error("Please select a demo date");
       return false;
     }
 
-    if (!form.bestTime) {
-      toast.error("Please select the best time to reach you");
+    if (!form.demoTime) {
+      toast.error("Please select a demo time");
+      return false;
+    }
+
+    if (!form.contactMethod) {
+      toast.error("Please select your preferred contact method");
       return false;
     }
 
@@ -123,12 +142,8 @@ export default function CyberSecurityForm() {
     const loadingToast = toast.loading("Submitting your request...");
 
     try {
-      // Add origin for CSRF protection
-      const dataToSend = {
-        ...form,
-        origin: window.location.origin,
-        timestamp: new Date().toISOString(),
-      };
+      // Send only form data, no extra fields
+      console.log("Sending data:", form);
 
       const response = await fetch(SCRIPT_URL, {
         redirect: "follow",
@@ -136,8 +151,11 @@ export default function CyberSecurityForm() {
         headers: {
           "Content-Type": "text/plain;charset=utf-8",
         },
-        body: JSON.stringify(dataToSend),
+        body: JSON.stringify(form),
       });
+
+      console.log("Response status:", response.status);
+      console.log("Response ok:", response.ok);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -171,8 +189,9 @@ export default function CyberSecurityForm() {
           company: "",
           country: "",
           service: "",
+          demoDate: "",
+          demoTime: "",
           contactMethod: "",
-          bestTime: "",
           message: "",
         });
 
@@ -220,18 +239,27 @@ export default function CyberSecurityForm() {
 
   const countries = getNames().sort((a, b) => a.localeCompare(b));
 
-  // Generate 24-hour times
-  const hours = Array.from({ length: 24 }, (_, i) => {
-    const hour12 = i === 0 ? 12 : i > 12 ? i - 12 : i;
-    const period = i >= 12 ? "PM" : "AM";
-    return `${hour12.toString().padStart(2, "0")}:00 ${period}`;
-  });
+  // Generate 24-hour times in 30-minute intervals
+  const timeSlots = [];
+  for (let hour = 0; hour < 24; hour++) {
+    for (let minute = 0; minute < 60; minute += 30) {
+      const hour12 = hour === 0 ? 12 : hour > 12 ? hour - 12 : hour;
+      const period = hour >= 12 ? "PM" : "AM";
+      const minuteStr = minute.toString().padStart(2, "0");
+      timeSlots.push(
+        `${hour12.toString().padStart(2, "0")}:${minuteStr} ${period}`,
+      );
+    }
+  }
+
+  // Get today's date in YYYY-MM-DD format for min attribute
+  const today = new Date().toISOString().split("T")[0];
 
   return (
-    <div className="">
+    <div>
       {/* Toast Container */}
       <Toaster
-        position="bottom"
+        position="bottom-center"
         toastOptions={{
           duration: 4000,
           style: {
@@ -255,7 +283,7 @@ export default function CyberSecurityForm() {
       />
 
       <div className="mx-auto w-full max-w-xl">
-        <div onSubmit={handleSubmit} className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2">
           <div className="flex flex-col gap-2 sm:flex-row">
             <input
               type="text"
@@ -284,7 +312,7 @@ export default function CyberSecurityForm() {
             <input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder="Email *"
               value={form.email}
               onChange={handleChange}
               required
@@ -303,9 +331,7 @@ export default function CyberSecurityForm() {
             />
           </div>
 
-          {/* Company */}
-
-          {/* Country / Timezone */}
+          {/* Country */}
           <select
             name="country"
             value={form.country}
@@ -315,16 +341,12 @@ export default function CyberSecurityForm() {
             className="rounded-lg border border-white/20 bg-white/5 p-3 text-white transition-all focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:opacity-50"
             style={{ color: form.country ? "#fff" : "rgba(255,255,255,0.6)" }}
           >
-            <option value="" className="bg-gradientLight">
+            <option value="" className="bg-[#1a1a2e]">
               Select Your Country *
             </option>
 
             {countries.map((country) => (
-              <option
-                key={country}
-                value={country}
-                className="bg-gradientLight"
-              >
+              <option key={country} value={country} className="bg-[#1a1a2e]">
                 {country}
               </option>
             ))}
@@ -340,49 +362,72 @@ export default function CyberSecurityForm() {
             className="rounded-lg border border-white/20 bg-white/5 p-3 text-white transition-all focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:opacity-50"
             style={{ color: form.service ? "#fff" : "rgba(255,255,255,0.6)" }}
           >
-            <option value="" className="bg-gradientLight">
+            <option value="" className="bg-[#1a1a2e]">
               Service of Interest *
             </option>
-            <option value="Penetration Testing" className="bg-gradientLight">
+            <option value="Penetration Testing" className="bg-[#1a1a2e]">
               Penetration Testing
             </option>
-            <option value="Security Audit" className="bg-gradientLight">
+            <option value="Web Security" className="bg-[#1a1a2e]">
               Web Security
             </option>
-            <option
-              value="Vulnerability Assessment"
-              className="bg-gradientLight"
-            >
+            <option value="App Security" className="bg-[#1a1a2e]">
               App Security
             </option>
-            <option value="SOC Monitoring" className="bg-gradientLight">
+            <option value="Cloud Security" className="bg-[#1a1a2e]">
               Cloud Security
             </option>
-            <option
-              value="Malware Protection Setup"
-              className="bg-gradientLight"
-            >
+            <option value="Network Security" className="bg-[#1a1a2e]">
               Network Security
             </option>
-            <option
-              value="Full Cyber Security Package"
-              className="bg-gradientLight"
-            >
+            <option value="SOC Monitoring" className="bg-[#1a1a2e]">
               SOC Monitoring
             </option>
-            <option
-              value="Full Cyber Security Package"
-              className="bg-gradientLight"
-            >
+            <option value="Compliance Management" className="bg-[#1a1a2e]">
               Compliance Management
             </option>
-            <option
-              value="Full Cyber Security Package"
-              className="bg-gradientLight"
-            >
+            <option value="Incident Response" className="bg-[#1a1a2e]">
               Incident Response
             </option>
           </select>
+
+          {/* Demo Date and Time */}
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <div className="w-full sm:basis-[50%]">
+              <input
+                type="date"
+                name="demoDate"
+                value={form.demoDate}
+                onChange={handleChange}
+                min={today}
+                required
+                disabled={status === "sending"}
+                className="w-full rounded-lg border border-white/20 bg-white/5 p-3 text-white transition-all focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:opacity-50"
+                style={{ colorScheme: "dark" }}
+              />
+            </div>
+
+            <select
+              name="demoTime"
+              value={form.demoTime}
+              onChange={handleChange}
+              required
+              disabled={status === "sending"}
+              className="w-full rounded-lg border border-white/20 bg-white/5 p-3 text-white transition-all focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:opacity-50 sm:basis-[50%]"
+              style={{
+                color: form.demoTime ? "#fff" : "rgba(255,255,255,0.6)",
+              }}
+            >
+              <option value="" className="bg-[#1a1a2e]">
+                Select Time *
+              </option>
+              {timeSlots.map((time) => (
+                <option key={time} value={time} className="bg-[#1a1a2e]">
+                  {time}
+                </option>
+              ))}
+            </select>
+          </div>
 
           {/* Preferred Contact Method */}
           <select
@@ -396,38 +441,18 @@ export default function CyberSecurityForm() {
               color: form.contactMethod ? "#fff" : "rgba(255,255,255,0.6)",
             }}
           >
-            <option value="" className="bg-gradientLight">
+            <option value="" className="bg-[#1a1a2e]">
               Preferred Contact Method *
             </option>
-            <option value="Phone Call" className="bg-gradientLight">
+            <option value="Phone Call" className="bg-[#1a1a2e]">
               Phone Call
             </option>
-            <option value="WhatsApp" className="bg-gradientLight">
+            <option value="WhatsApp" className="bg-[#1a1a2e]">
               WhatsApp
             </option>
-            <option value="Email" className="bg-gradientLight">
+            <option value="Email" className="bg-[#1a1a2e]">
               Email
             </option>
-          </select>
-
-          {/* Best Time to Reach */}
-          <select
-            name="bestTime"
-            value={form.bestTime}
-            onChange={handleChange}
-            required
-            disabled={status === "sending"}
-            className="rounded-lg border border-white/20 bg-white/5 p-3 text-white transition-all focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:opacity-50"
-            style={{ color: form.bestTime ? "#fff" : "rgba(255,255,255,0.6)" }}
-          >
-            <option value="" className="bg-gradientLight">
-              Best Time to Reach You *
-            </option>
-            {hours.map((h) => (
-              <option key={h} value={h} className="bg-gradientLight">
-                {h}
-              </option>
-            ))}
           </select>
 
           {/* Message (optional) */}
@@ -448,7 +473,7 @@ export default function CyberSecurityForm() {
           <button
             onClick={handleSubmit}
             disabled={status === "sending"}
-            className="cursor-pointer flex-center gap-2 from-accent to-primary before:border-light/25 relative h-fit w-full rounded-lg bg-gradient-to-br via-[#941891] px-5 py-3 font-medium text-white transition-all transition-transform duration-200 before:absolute before:inset-0 before:rounded-lg before:border-3 before:transition-all before:duration-200 before:content-[''] hover:-translate-y-1"
+            className="flex-center from-accent to-primary before:border-light/25 relative h-fit w-full cursor-pointer gap-2 rounded-lg bg-gradient-to-br via-[#941891] px-5 py-3 font-medium text-white transition-all transition-transform duration-200 before:absolute before:inset-0 before:rounded-lg before:border-3 before:transition-all before:duration-200 before:content-[''] hover:-translate-y-1"
           >
             {status === "sending" ? "Activating..." : "Activate Shield"}
             <FaShieldAlt className="h-5 w-5" />
