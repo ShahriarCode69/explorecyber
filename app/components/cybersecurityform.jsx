@@ -23,7 +23,7 @@ export default function CyberSecurityForm() {
 
   // Replace with YOUR Apps Script Web App URL:
   const SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbwVW6FqdamShT9FDKblD8oftaFP3fLoeP_Er_39yVyU7RG1NlEwKNVhVZqlodE0b8fQ6Q/exec";
+    "https://script.google.com/macros/s/AKfycbwwHNZzRgUK0SaBhzF0FqknS-RGZqdulDEElzeDePWMWtRMujcYJ-FGQ8rA2JO5ojOvIA/exec";
 
   const handleChange = (e) => {
     const { name, value } = e.target;

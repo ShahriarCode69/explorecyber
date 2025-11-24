@@ -98,7 +98,7 @@ export default function Navbar() {
         </ul>
 
         {/* Desktop Button */}
-        <div className="hidden md:block">
+        <div className="hidden md:flex">
           <Button href="#contact">Get Started</Button>
         </div>
 

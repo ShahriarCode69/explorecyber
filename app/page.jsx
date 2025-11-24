@@ -30,7 +30,6 @@ export default function Home() {
      <FAQSection/>
      <Cta/>
      <Contact/>
-     <Footer/>
    </main>
   );
 }

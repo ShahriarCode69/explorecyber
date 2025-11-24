@@ -1,0 +1,23 @@
+{
+  "status": "ready",
+  "originalFilePath": "videos\\heroVid.mp4",
+  "provider": "mux",
+  "providerMetadata": {
+    "mux": {
+      "uploadId": "JLSyZijZDkBlZJsNX1Ct3aUbihSt02Hoh1J701RRl02njs",
+      "assetId": "iVjPtFh3ipQ6H5KoalA685wiWt3XFVkusxkg1hLYscM",
+      "playbackId": "u3IpAYXWSJNDnZpKIum00INHw02aD02DxVHDW5ufPLVhmI"
+    }
+  },
+  "createdAt": 1763877880236,
+  "updatedAt": 1763878048598,
+  "size": 95145393,
+  "sources": [
+    {
+      "src": "https://stream.mux.com/u3IpAYXWSJNDnZpKIum00INHw02aD02DxVHDW5ufPLVhmI.m3u8",
+      "type": "application/x-mpegURL"
+    }
+  ],
+  "poster": "https://image.mux.com/u3IpAYXWSJNDnZpKIum00INHw02aD02DxVHDW5ufPLVhmI/thumbnail.webp",
+  "blurDataURL": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAABwAgCdASoQAAkAAQAcJbACdLoAEI+YBt7X/Z8IAP7+qc/bUjir13WMt2/Kp1a3B+ll+xkS8cwMDn50+2nqZ/UnPjn5OXCh9L8SjMOc1bl0NXFR6U+wwv/xKnvVcocV6jEze1NT/6V95/nY0Rlif8i85/q+3JQ9l3XvzSitAAA="
+}
