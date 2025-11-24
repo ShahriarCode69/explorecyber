@@ -13,7 +13,7 @@ export default function Expertise() {
     <section className='h-auto bg-[url("/backgrounds/expertise.png")] bg-cover bg-center pb-32'>
       <div className="section mx container">
         <p className="mb-4 text-center text-base uppercase md:text-xl">
-          Our services
+          Expertise
         </p>
         <h2 className="heading-sm mx-auto mb-4 max-w-[30ch] text-center">
           Our security qualifications
