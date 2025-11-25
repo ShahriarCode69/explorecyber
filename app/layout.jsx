@@ -1,6 +1,8 @@
 import { Funnel_Display } from "next/font/google";
 import "./globals.css";
 
+import { ReactLenis } from "lenis/react";
+
 import Navbar from "./components/navbar";
 import LenisProvider from "./components/LenisProvider";
 import CustomCursor from "./components/CustomCursor";
@@ -15,8 +17,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://explorecyber.com";
 const defaultTitle = "Explore Cyber | Elite Cybersecurity Services";
 const defaultDescription =
   "Modern cybersecurity consulting that tests, defends, and hardens your digital infrastructure with continuous protection and expert guidance.";
-const developerName =
-  process.env.NEXT_PUBLIC_DEV_NAME || "Shahriar";
+const developerName = process.env.NEXT_PUBLIC_DEV_NAME || "Shahriar";
 const developerUrl =
   process.env.NEXT_PUBLIC_DEV_URL || "https://shahriarcode.vercel.app/";
 
@@ -123,12 +124,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${funnelDisplay.variable} antialiased`}>
-        <LenisProvider>
-          <CustomCursor />
-          <Navbar />
-          {children}
-          <Footer/>
-        </LenisProvider>
+        <CustomCursor />
+        <Navbar />
+        {children}
+        <Footer />
       </body>
     </html>
   );

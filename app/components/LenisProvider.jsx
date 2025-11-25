@@ -7,22 +7,21 @@ export default function LenisProvider({ children }) {
     const lenis = new Lenis({
       smooth: true,
       smoothTouch: true,
-      lerp: 2, // lightweight smoothing (recommended)
-      // duration removed — reduces CPU load
-      // easing removed — uses default (super light)
+      lerp: 0.1, // fast + smooth (main key)
+      syncTouch: false, // avoid GPU-based touch sync
     });
 
-    let frame;
+    let frameId;
 
     const raf = (time) => {
       lenis.raf(time);
-      frame = requestAnimationFrame(raf);
+      frameId = requestAnimationFrame(raf);
     };
 
     requestAnimationFrame(raf);
 
     return () => {
-      cancelAnimationFrame(frame);
+      cancelAnimationFrame(frameId);
       lenis.destroy();
     };
   }, []);

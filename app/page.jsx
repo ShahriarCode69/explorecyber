@@ -1,3 +1,5 @@
+"use client"
+
 import Hero from "./components/hero";
 import LogoCloud from "./components/logocloud";
 import About from "./components/about";
@@ -12,8 +14,21 @@ import FAQSection from "./components/faqsection";
 import WhenSection from "./components/whensection";
 import WorkSection from "./components/worksection";
 import CaseStudy from "./components/casestudy";
+import { useEffect } from "react";
+import Lenis from "lenis"
 
 export default function Home() {
+
+  useEffect(() => {
+    const lenis = new Lenis();
+    function raf(time, any) {
+      lenis.raf(time);
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+  }, [])
+
   return (
    <main>
      <Hero/>
