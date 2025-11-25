@@ -38,9 +38,9 @@ export default function Expertise() {
           Our security qualifications
         </h2>
         <p className="description mx-auto text-center">
-          Our London based team of ethical hackers and penetration testing
-          service experts possess the skills and experience to identify the
-          latest threats.
+          Our expert team of ethical hackers and penetration testing service
+          experts possess the skills and experience to identify the latest
+          threats. enhance it
         </p>
 
         <div className="mt-12 flex justify-center">

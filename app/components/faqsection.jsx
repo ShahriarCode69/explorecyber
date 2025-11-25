@@ -15,7 +15,7 @@ const FAQSection = () => {
     {
       question: "What industries do you work with?",
       answer:
-        "We work with a diverse range of industries including finance, healthcare, retail, technology, government, and manufacturing. Our cybersecurity solutions are tailored to meet the specific compliance and security requirements of each sector.",
+        "We specialize in securing E-commerce brands and SaaS platforms. Our services are designed around the unique threats these sectors face — from payment-page exploits and account takeover attacks to API vulnerabilities and data-privacy risks. Every security assessment and monitoring solution is tailored to match your platform’s architecture, compliance needs, and growth stage",
     },
     {
       question: "What services do you provide?",
