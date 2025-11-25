@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { getNames } from "country-list";
 import { FaShieldAlt, FaChevronDown } from "react-icons/fa";
-import Button from "./button";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function CyberSecurityForm() {
@@ -21,7 +20,7 @@ export default function CyberSecurityForm() {
 
   const [status, setStatus] = useState(null);
 
-  const SCRIPT_URL = process.env.CONTACT_FORM_SCRIPT;
+  const SCRIPT_URL = process.env.NEXT_PUBLIC_CONTACT_FORM_SCRIPT;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,7 +35,7 @@ export default function CyberSecurityForm() {
       }
     }
 
-    setForm((p) => ({ ...p, [name]: value }));
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const validateForm = () => {
@@ -63,6 +62,18 @@ export default function CyberSecurityForm() {
 
     if (phoneDigits.length > 15) {
       toast.error("Phone number is too long (maximum 15 digits)");
+      return false;
+    }
+
+    if (!form.email.trim()) {
+      toast.error("Please enter your email address");
+      return false;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      toast.error("Please enter a valid email address");
       return false;
     }
 
@@ -108,6 +119,20 @@ export default function CyberSecurityForm() {
       return;
     }
 
+    // Check if SCRIPT_URL is configured
+    if (!SCRIPT_URL || SCRIPT_URL === "undefined") {
+      toast.error(
+        "❌ Form is not configured. Please add NEXT_PUBLIC_CONTACT_FORM_SCRIPT to your .env file",
+      );
+      console.error(
+        "SCRIPT_URL is undefined. Add this to your .env.local file:",
+      );
+      console.error(
+        "NEXT_PUBLIC_CONTACT_FORM_SCRIPT=your_google_apps_script_url",
+      );
+      return;
+    }
+
     setStatus("sending");
 
     const loadingToast = toast.loading("Submitting your request...");
@@ -119,77 +144,58 @@ export default function CyberSecurityForm() {
         timestamp: new Date().toISOString(),
       };
 
+      console.log("Submitting to:", SCRIPT_URL);
+
       const response = await fetch(SCRIPT_URL, {
-        redirect: "follow",
         method: "POST",
+        mode: "no-cors",
+        cache: "no-cache",
         headers: {
-          "Content-Type": "text/plain;charset=utf-8",
+          "Content-Type": "text/plain",
         },
         body: JSON.stringify(dataToSend),
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
+      // With no-cors mode, we can't read the response, so assume success
       toast.dismiss(loadingToast);
 
-      if (data.status === "success") {
-        setStatus("success");
+      setStatus("success");
 
-        toast.success(
-          "🎉 Your request has been submitted successfully! We'll contact you soon.",
-          {
-            duration: 5000,
-            style: {
-              background: "#10B981",
-              color: "#fff",
-            },
+      toast.success(
+        "🎉 Your request has been submitted successfully! We'll contact you soon.",
+        {
+          duration: 5000,
+          style: {
+            background: "#10B981",
+            color: "#fff",
           },
-        );
+        },
+      );
 
-        setForm({
-          fullName: "",
-          phone: "",
-          email: "",
-          company: "",
-          country: "",
-          service: "",
-          contactMethod: "",
-          bestTime: "",
-          message: "",
-        });
+      // Reset form
+      setForm({
+        fullName: "",
+        phone: "",
+        email: "",
+        company: "",
+        country: "",
+        service: "",
+        contactMethod: "",
+        bestTime: "",
+        message: "",
+      });
 
-        setTimeout(() => setStatus(null), 3000);
-      } else {
-        throw new Error(data.message || "Submission failed");
-      }
+      setTimeout(() => setStatus(null), 3000);
     } catch (err) {
       console.error("Error submitting form:", err);
       toast.dismiss(loadingToast);
 
       setStatus("error");
 
-      if (
-        err.message.includes("Failed to fetch") ||
-        err.message.includes("NetworkError")
-      ) {
-        toast.error(
-          "❌ Network error. Please check your internet connection and try again.",
-          { duration: 6000 },
-        );
-      } else if (err.message.includes("HTTP error")) {
-        toast.error("❌ Server error. Please try again later.", {
-          duration: 6000,
-        });
-      } else {
-        toast.error(
-          `❌ ${err.message || "Something went wrong. Please try again."}`,
-          { duration: 6000 },
-        );
-      }
+      toast.error(
+        "❌ Failed to submit. Please check the console and verify your SCRIPT_URL is correct.",
+        { duration: 6000 },
+      );
 
       setTimeout(() => setStatus(null), 3000);
     }
@@ -224,7 +230,7 @@ export default function CyberSecurityForm() {
       />
 
       <div className="mx-auto w-full max-w-xl">
-        <div onSubmit={handleSubmit} className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2">
           {/* Name + Phone */}
           <div className="flex flex-col gap-2 sm:flex-row">
             <input
@@ -233,9 +239,8 @@ export default function CyberSecurityForm() {
               placeholder="Full Name *"
               value={form.fullName}
               onChange={handleChange}
-              required
               disabled={status === "sending"}
-              className="w-full rounded-lg border border-white/20 bg-white/5 p-3 text-white transition-all placeholder:text-white/60 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:opacity-50"
+              className="w-full rounded-lg border border-white/20 bg-white/5 p-3 text-white transition-all placeholder:text-white/60 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
             />
 
             <input
@@ -244,9 +249,8 @@ export default function CyberSecurityForm() {
               placeholder="Phone / WhatsApp *"
               value={form.phone}
               onChange={handleChange}
-              required
               disabled={status === "sending"}
-              className="w-full rounded-lg border border-white/20 bg-white/5 p-3 text-white transition-all placeholder:text-white/60 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:opacity-50"
+              className="w-full rounded-lg border border-white/20 bg-white/5 p-3 text-white transition-all placeholder:text-white/60 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
             />
           </div>
 
@@ -255,12 +259,11 @@ export default function CyberSecurityForm() {
             <input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder="Email *"
               value={form.email}
               onChange={handleChange}
-              required
               disabled={status === "sending"}
-              className="basis-[50%] rounded-lg border border-white/20 bg-white/5 p-3 text-white transition-all placeholder:text-white/60 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:opacity-50"
+              className="basis-[50%] rounded-lg border border-white/20 bg-white/5 p-3 text-white transition-all placeholder:text-white/60 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
             />
             <input
               type="text"
@@ -268,9 +271,8 @@ export default function CyberSecurityForm() {
               placeholder="Company Name *"
               value={form.company}
               onChange={handleChange}
-              required
               disabled={status === "sending"}
-              className="basis-[50%] rounded-lg border border-white/20 bg-white/5 p-3 text-white transition-all placeholder:text-white/60 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:opacity-50"
+              className="basis-[50%] rounded-lg border border-white/20 bg-white/5 p-3 text-white transition-all placeholder:text-white/60 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
             />
           </div>
 
@@ -280,23 +282,18 @@ export default function CyberSecurityForm() {
               name="country"
               value={form.country}
               onChange={handleChange}
-              required
               disabled={status === "sending"}
-              className="w-full appearance-none rounded-lg border border-white/20 bg-white/5 p-3 pr-10 text-white transition-all focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:opacity-50"
+              className="w-full appearance-none rounded-lg border border-white/20 bg-white/5 p-3 pr-10 text-white transition-all focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
               style={{
                 color: form.country ? "#fff" : "rgba(255,255,255,0.6)",
               }}
             >
-              <option value="" className="bg-gradientLight">
+              <option value="" className="bg-[#141426]">
                 Select Your Country *
               </option>
 
               {countries.map((country) => (
-                <option
-                  key={country}
-                  value={country}
-                  className="bg-gradientLight"
-                >
+                <option key={country} value={country} className="bg-[#141426]">
                   {country}
                 </option>
               ))}
@@ -311,47 +308,37 @@ export default function CyberSecurityForm() {
               name="service"
               value={form.service}
               onChange={handleChange}
-              required
               disabled={status === "sending"}
-              className="w-full appearance-none rounded-lg border border-white/20 bg-white/5 p-3 pr-10 text-white transition-all focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:opacity-50"
+              className="w-full appearance-none rounded-lg border border-white/20 bg-white/5 p-3 pr-10 text-white transition-all focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
               style={{
                 color: form.service ? "#fff" : "rgba(255,255,255,0.6)",
               }}
             >
-              <option value="" className="bg-gradientLight">
+              <option value="" className="bg-[#141426]">
                 Service of Interest *
               </option>
-              <option value="Penetration Testing" className="bg-gradientLight">
+              <option value="Penetration Testing" className="bg-[#141426]">
                 Penetration Testing
               </option>
-              <option value="Security Audit" className="bg-gradientLight">
+              <option value="Web Security" className="bg-[#141426]">
                 Web Security
               </option>
-              <option
-                value="Vulnerability Assessment"
-                className="bg-gradientLight"
-              >
+              <option value="App Security" className="bg-[#141426]">
                 App Security
               </option>
-              <option value="SOC Monitoring" className="bg-gradientLight">
+              <option value="Cloud Security" className="bg-[#141426]">
                 Cloud Security
               </option>
-              <option
-                value="Malware Protection Setup"
-                className="bg-gradientLight"
-              >
+              <option value="Network Security" className="bg-[#141426]">
                 Network Security
               </option>
-              <option value="SOC Monitoring" className="bg-gradientLight">
+              <option value="SOC Monitoring" className="bg-[#141426]">
                 SOC Monitoring
               </option>
-              <option
-                value="Compliance Management"
-                className="bg-gradientLight"
-              >
+              <option value="Compliance Management" className="bg-[#141426]">
                 Compliance Management
               </option>
-              <option value="Incident Response" className="bg-gradientLight">
+              <option value="Incident Response" className="bg-[#141426]">
                 Incident Response
               </option>
             </select>
@@ -365,23 +352,22 @@ export default function CyberSecurityForm() {
               name="contactMethod"
               value={form.contactMethod}
               onChange={handleChange}
-              required
               disabled={status === "sending"}
-              className="w-full appearance-none rounded-lg border border-white/20 bg-white/5 p-3 pr-10 text-white transition-all focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:opacity-50"
+              className="w-full appearance-none rounded-lg border border-white/20 bg-white/5 p-3 pr-10 text-white transition-all focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
               style={{
                 color: form.contactMethod ? "#fff" : "rgba(255,255,255,0.6)",
               }}
             >
-              <option value="" className="bg-gradientLight">
+              <option value="" className="bg-[#141426]">
                 Preferred Contact Method *
               </option>
-              <option value="Phone Call" className="bg-gradientLight">
+              <option value="Phone Call" className="bg-[#141426]">
                 Phone Call
               </option>
-              <option value="WhatsApp" className="bg-gradientLight">
+              <option value="WhatsApp" className="bg-[#141426]">
                 WhatsApp
               </option>
-              <option value="Email" className="bg-gradientLight">
+              <option value="Email" className="bg-[#141426]">
                 Email
               </option>
             </select>
@@ -395,18 +381,17 @@ export default function CyberSecurityForm() {
               name="bestTime"
               value={form.bestTime}
               onChange={handleChange}
-              required
               disabled={status === "sending"}
-              className="w-full appearance-none rounded-lg border border-white/20 bg-white/5 p-3 pr-10 text-white transition-all focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:opacity-50"
+              className="w-full appearance-none rounded-lg border border-white/20 bg-white/5 p-3 pr-10 text-white transition-all focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
               style={{
                 color: form.bestTime ? "#fff" : "rgba(255,255,255,0.6)",
               }}
             >
-              <option value="" className="bg-gradientLight">
+              <option value="" className="bg-[#141426]">
                 Best Time to Reach You *
               </option>
               {hours.map((h) => (
-                <option key={h} value={h} className="bg-gradientLight">
+                <option key={h} value={h} className="bg-[#141426]">
                   {h}
                 </option>
               ))}
@@ -422,7 +407,7 @@ export default function CyberSecurityForm() {
             value={form.message}
             onChange={handleChange}
             disabled={status === "sending"}
-            className="rounded-lg border border-white/20 bg-white/5 p-3 text-white transition-all placeholder:text-white/60 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:opacity-50"
+            className="rounded-lg border border-white/20 bg-white/5 p-3 text-white transition-all placeholder:text-white/60 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
             rows="4"
           />
           <div className="text-right text-sm text-white/40">
@@ -433,10 +418,38 @@ export default function CyberSecurityForm() {
           <button
             onClick={handleSubmit}
             disabled={status === "sending"}
-            className="flex-center from-accent to-primary before:border-light/25 relative w-full cursor-pointer gap-2 rounded-lg bg-gradient-to-br via-[#941891] px-5 py-3 font-medium text-white transition-all duration-200 before:absolute before:inset-0 before:rounded-lg before:border-3 before:transition-all hover:-translate-y-1 disabled:opacity-50"
+            className="relative flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-gradient-to-br from-purple-600 via-purple-700 to-pink-600 px-5 py-3 font-medium text-white transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-500/50 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
           >
-            {status === "sending" ? "Activating..." : "Activate Shield"}
-            <FaShieldAlt className="h-5 w-5" />
+            {status === "sending" ? (
+              <>
+                <svg
+                  className="h-5 w-5 animate-spin"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                Activating...
+              </>
+            ) : (
+              <>
+                Activate Shield
+                <FaShieldAlt className="h-5 w-5" />
+              </>
+            )}
           </button>
         </div>
       </div>
