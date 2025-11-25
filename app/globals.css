@@ -63,6 +63,18 @@ body {
   font-family: var(--font-funnel-display);
 }
 
+*::selection {
+  background: #f8333c30;
+  color: var(--color-light);
+  text-shadow: none;
+}
+
+*::-moz-selection {
+  background: #f8333c30;
+  color: var(--color-light);
+  text-shadow: none;
+}
+
 .container {
   @apply mx-auto w-full max-w-screen-2xl;
 }
@@ -159,6 +171,46 @@ body {
 @media (max-width: 420px) {
   .my-pagination .swiper-pagination-bullet-active {
     width: 22px;
+  }
+}
+
+.custom-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  z-index: 50;
+}
+
+.custom-cursor.is-visible {
+  opacity: 1;
+}
+
+.cursor-core {
+  display: block;
+  width: 200px;
+  height: 200px;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    var(--color-accent) 0%,
+    var(--color-primary) 50%,
+    #f8333c 90%
+  );
+  filter: blur(80px);
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .custom-cursor {
+    display: none;
   }
 }
 

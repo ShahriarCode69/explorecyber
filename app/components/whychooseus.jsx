@@ -1,6 +1,9 @@
+"use client"
+
 import Image from "next/image";
 import React from "react";
 import { FaCheck } from "react-icons/fa";
+import { motion } from "framer-motion";
 import benefitsImage from "@/public/images/whychooseus.png"
 
 const benefits = [
@@ -12,7 +15,13 @@ const benefits = [
 export default function WhyChooseUs() {
   return (
     <section className="section mx container flex flex-col lg:flex-row lg:items-center lg:justify-center lg:gap-16">
-      <div className="w-full lg:w-[45%]">
+      <motion.div
+        className="w-full lg:w-[45%]"
+        initial={{ x: -50, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
         <p className="mb-2 text-base uppercase md:text-xl">Why choose us</p>
         <h2 className="heading-md mb-2">Security done right. No shortcuts</h2>
         <p className="description mb-10">
@@ -35,14 +44,20 @@ export default function WhyChooseUs() {
             </div>
           ))}
         </div>
-      </div>
-      <div className="w-full lg:w-[55%]">
+      </motion.div>
+      <motion.div
+        className="w-full lg:w-[55%]"
+        initial={{ x: 50, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
         <Image
           quality={100}
           src={benefitsImage}
           alt="why choose us section image"
         />
-      </div>
+      </motion.div>
     </section>
   );
 }

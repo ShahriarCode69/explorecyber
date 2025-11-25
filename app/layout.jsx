@@ -3,6 +3,7 @@ import "./globals.css";
 
 import Navbar from "./components/navbar";
 import LenisProvider from "./components/LenisProvider";
+import CustomCursor from "./components/CustomCursor";
 import Footer from "./components/footer";
 
 const funnelDisplay = Funnel_Display({
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${funnelDisplay.variable} antialiased`}>
         <LenisProvider>
+          <CustomCursor />
           <Navbar />
           {children}
           <Footer/>

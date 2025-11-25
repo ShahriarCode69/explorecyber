@@ -12,13 +12,15 @@ export default function WorkCard({
 
   return (
     <div
-      className={`w-full border-2 border-white/10 ${
-        isLight ? "bg-light" : "bg-gradient-to-b from-gradientDark to-gradientLight"
+      className={`group w-full border-2 border-white/10 transition duration-300 ${
+        isLight
+          ? "bg-light"
+          : "from-gradientDark to-gradientLight bg-gradient-to-b"
       } rounded-3xl p-6`}
     >
       <div className="flex flex-col items-center gap-8 lg:flex-row lg:gap-12">
         {/* Text Content */}
-        <div className="w-full h-96 flex justify-between flex-col flex-1 space-y-6">
+        <div className="flex h-96 w-full flex-1 flex-col justify-between space-y-6">
           <div className="space-y-4">
             <p
               className={`text-xs font-medium tracking-wider uppercase ${
@@ -65,7 +67,7 @@ export default function WorkCard({
             <img
               src={image}
               alt={title}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover transition duration-300 group-hover:scale-130"
             />
           </div>
         </div>

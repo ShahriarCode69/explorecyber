@@ -14,6 +14,23 @@ export default function WhenSection() {
 
   return (
     <section className="section mx container">
+      {/* Make this part responsive: START */}
+      <div className="flex flex-col gap-6 md:flex-row md:items-start md:gap-0">
+        <div>
+          <p className="mb-2 text-base uppercase md:text-xl">
+            When
+          </p>
+          <h2 className="heading-md md:mb-14">Your organisation needs a pen test</h2>
+        </div>
+        <div>
+          <p className="description text-left mb-12 md:mb-0 md:pt-16 md:!text-right">
+            With threats constantly evolving, it’s recommended that every
+            organisation commissions penetration testing at least once a year,
+            but more frequently when:
+          </p>
+        </div>
+      </div>
+      {/* END */}
       <div className="grid auto-rows-auto grid-cols-5 gap-2 md:gap-3">
         {/* div1 */}
         <div className="relative col-span-5 rounded-md bg-[#07071665] p-8 sm:col-span-3 sm:row-span-6">
@@ -49,7 +66,7 @@ export default function WhenSection() {
         <div className="col-span-5 rounded-md bg-gray-400 sm:col-span-2 sm:col-start-4 sm:row-span-2">
           <a
             href="#contact"
-            className="flex-center from-accent to-primary py-4 before:border-light/25 relative h-full w-full cursor-pointer rounded-md bg-gradient-to-br via-[#941891] text-2xl font-medium text-white before:absolute before:inset-0 before:rounded-lg before:border-3 before:content-['']"
+            className="flex-center from-accent to-primary before:border-light/25 relative h-full w-full cursor-pointer rounded-md bg-gradient-to-br via-[#941891] py-4 text-2xl font-medium text-white before:absolute before:inset-0 before:rounded-lg before:border-3 before:content-['']"
           >
             Verify System Security
           </a>
@@ -77,3 +94,4 @@ export default function WhenSection() {
     </section>
   );
 }
+
