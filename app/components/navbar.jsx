@@ -13,10 +13,10 @@ export default function Navbar() {
 
   const navLinks = [
     { label: "Home", href: "/" },
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Works", href: "#works" },
-    { label: "Contact", href: "#contact" },
+    { label: "About", href: "/#about" },
+    { label: "Services", href: "/#services" },
+    { label: "Works", href: "/#works" },
+    { label: "Contact", href: "/#contact" },
   ];
 
   const closeMenu = () => setOpen(false);
@@ -99,7 +99,7 @@ export default function Navbar() {
 
         {/* Desktop Button */}
         <div className="hidden md:flex">
-          <Button href="#contact">Get Started</Button>
+          <Button href="/#contact">Get Started</Button>
         </div>
 
         {/* Mobile Toggle */}
