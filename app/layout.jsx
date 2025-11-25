@@ -123,12 +123,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${funnelDisplay.variable} antialiased`}>
-        {/* <LenisProvider> */}
+        <LenisProvider>
           <CustomCursor />
           <Navbar />
           {children}
           <Footer/>
-        {/* </LenisProvider> */}
+        </LenisProvider>
       </body>
     </html>
   );
