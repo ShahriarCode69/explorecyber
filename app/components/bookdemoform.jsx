@@ -135,7 +135,7 @@ export default function BookDemoForm() {
 
   return (
     <div>
-      <Toaster position="bottom-center" />
+      <Toaster position="bottom" />
 
       <div className="mx-auto w-full max-w-xl">
         <div className="flex flex-col gap-2">
