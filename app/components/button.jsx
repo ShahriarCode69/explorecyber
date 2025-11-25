@@ -17,11 +17,10 @@ export default function Button({
       "before:transition-all before:duration-200 " +
       "hover:-translate-y-1", // translate up on hover
     secondary:
-      "relative bg-white text-gray-800 rounded-lg overflow-hidden " +
-      "before:content-[''] before:absolute before:inset-0 before:rounded-lg " +
-      "before:p-[2px] before:bg-gradient-to-br before:from-accent before:to-primary " +
-      "before:-z-10 " +
-      "hover:-translate-y-1 transition-all duration-200",
+      "relative bg-gradient-to-br from-primary via-[#941891] to-accent text-white " +
+      "before:absolute before:inset-0 before:rounded-lg before:border-3 before:border-light/25 before:content-[''] " +
+      "before:transition-all before:duration-200 " +
+      "hover:-translate-y-1",
   };
 
   // If href is provided, render Link

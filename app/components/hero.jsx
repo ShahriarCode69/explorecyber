@@ -33,7 +33,7 @@ export default function Hero() {
         </div>
         <div className="flex gap-3">
           <Button href="/bookdemo">Book A Demo</Button>
-          <Button href="#services">Explore Services</Button>
+          <Button variant="secondary" href="#services">Explore Services</Button>
         </div>
         <motion.div
           ref={videoRef}
