@@ -1,6 +1,11 @@
+"use client";
+
 import React from "react";
+import { motion } from "framer-motion";
 
 export default function Expertise() {
+  const STAGGER_DELAY = 0.12;
+
   const certifications = [
     "ceh.svg",
     "offensivesecurity.svg",
@@ -8,6 +13,20 @@ export default function Expertise() {
     "crest.svg",
     "cism.svg",
   ];
+
+  const itemVariants = {
+    hidden: (i) => ({
+      opacity: 0,
+      y: (i % 2 === 0 ? -1 : 1) * 90,
+      scale: 0.9,
+    }),
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { type: "spring", stiffness: 200, damping: 20 },
+    },
+  };
 
   return (
     <section className='h-auto bg-[url("/backgrounds/expertise.png")] bg-cover bg-center pb-32'>
@@ -25,16 +44,32 @@ export default function Expertise() {
         </p>
 
         <div className="mt-12 flex justify-center">
-          <div className="flex flex-wrap justify-center gap-4">
+          <motion.div
+            className="flex flex-wrap justify-center gap-4 md:gap-6"
+            variants={{
+              hidden: {},
+              show: {
+                transition: {
+                  staggerChildren: STAGGER_DELAY,
+                  delayChildren: STAGGER_DELAY / 2,
+                },
+              },
+            }}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-200px 0px" }}
+          >
             {certifications.map((certificate, index) => (
-              <img
+              <motion.img
                 key={index}
                 src={`/images/${certificate}`}
-                alt=""
+                alt={certificate.replace(".svg", "")}
                 className="object-contain"
+                variants={itemVariants}
+                custom={index}
               />
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

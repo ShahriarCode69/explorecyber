@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import LogoImage from "@/public/logo.svg";
@@ -20,21 +20,11 @@ export default function Footer() {
     },
   ];
 
-	const socialLinks = [
+  const socialLinks = [
     {
       id: 1,
-      icon: <FaFacebookF size={18} />,
-      href: "https://facebook.com",
-    },
-    {
-      id: 2,
       icon: <FaLinkedinIn size={18} />,
-      href: "https://linkedin.com",
-    },
-    {
-      id: 3,
-      icon: <FaXTwitter size={18} />,
-      href: "https://x.com",
+      href: "https://www.linkedin.com/company/explore-cyber/",
     },
   ];
 
@@ -53,15 +43,17 @@ export default function Footer() {
         </ul>
       </div>
       <hr />
-      <div className="mt-12 mb-2 flex flex-col items-center justify-between gap-12 md:flex-row">
+      <div className="mt-12 flex flex-col items-end justify-between gap-12 md:flex-row">
         <p className="text-center uppercase md:text-left">
           © {new Date().getFullYear()} Explore Cyber • All Rights Reserved
         </p>
+
         <div className="flex items-center gap-4">
           {socialLinks.map((item) => (
             <motion.a
               key={item.id}
-							href="#"
+              href={item.href}
+              target="_blank"
               className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-gray-300"
               whileHover="hover"
               initial="initial"
@@ -81,6 +73,16 @@ export default function Footer() {
           ))}
         </div>
       </div>
+      <p className="mb-2 text-sm text-white/50">
+        Made with 💖 by{" "}
+        <a
+          target="_blank"
+          className="hover:text-accent"
+          href="https://shahriarcode.vercel.app/"
+        >
+          SHAHRIAR
+        </a>
+      </p>
     </footer>
   );
 }

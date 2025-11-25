@@ -21,16 +21,17 @@ const AnimatedNumber = ({ value, suffix = "", decimals = 0 }) => {
   }, [isInView, motionValue, value]);
 
   useEffect(() => {
-    const unsubscribe = motionValue.on("change", (latest) => {
-      if (spanRef.current) {
-        spanRef.current.textContent = latest.toLocaleString(undefined, {
-          minimumFractionDigits: decimals,
-          maximumFractionDigits: decimals,
-        });
-      }
-    });
-    return unsubscribe;
-  }, []);
+  const unsubscribe = motionValue.on("change", (latest) => {
+    if (numberRef.current) {
+      numberRef.current.textContent = latest.toLocaleString(undefined, {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      });
+    }
+  });
+  return unsubscribe;
+}, [motionValue, decimals]);
+
 
   return (
     <h2

@@ -68,16 +68,21 @@ export default function CaseStudy() {
       </h2>
       <Swiper
         modules={[Navigation, Pagination, A11y]}
-        spaceBetween={16}
-        slidesPerView={1.2}
+        autoHeight={true}
+        spaceBetween={2}
+        slidesPerView={1}
         initialSlide={1}
-        centeredSlides={true}
-        // use dummy selectors here — we'll override with refs in onSwiper
-        navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
-        pagination={{ el: paginationRef.current, clickable: true }}
+        centeredSlides={false}
+        breakpoints={{
+          768: {
+            slidesPerView: 1.2,
+            centeredSlides: true,
+          },
+        }}
+        // FIX: use null during render
+        navigation={{ prevEl: null, nextEl: null }}
+        pagination={{ el: null, clickable: true }}
         onSwiper={(swiper) => {
-          // assign refs to params (refs are defined by now) and re-init
-          // setTimeout ensures DOM refs are available in some edge cases
           setTimeout(() => {
             if (prevRef.current && nextRef.current) {
               swiper.params.navigation.prevEl = prevRef.current;
@@ -94,12 +99,10 @@ export default function CaseStudy() {
             }
           }, 0);
         }}
-        onSlideChange={() => {
-          /* optional behavior */
-        }}
+        onSlideChange={() => {}}
       >
         {caseStudies.map((caseStudy, index) => (
-          <SwiperSlide key={index} className="">
+          <SwiperSlide key={index} className="!h-auto">
             <CaseStudyCard
               category={caseStudy.catergory}
               title={caseStudy.title}

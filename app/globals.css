@@ -61,6 +61,7 @@ body {
   background: var(--color-dark);
   color: var(--color-light);
   font-family: var(--font-funnel-display);
+  cursor: url("/icons/cursor.svg") 0 0, auto;
 }
 
 *::selection {
@@ -122,12 +123,16 @@ body {
 }
 
 .btn-secondary::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   height: 107%;
   width: 102%;
-  background-image: linear-gradient(to bottom right, var(--color-accent), var(--color-primary)); /* or white if you want solid background */
+  background-image: linear-gradient(
+    to bottom right,
+    var(--color-accent),
+    var(--color-primary)
+  ); /* or white if you want solid background */
   border-radius: 0.5rem;
   z-index: -1;
 }
@@ -139,7 +144,7 @@ body {
 .my-pagination .swiper-pagination-bullet {
   width: 10px;
   height: 10px;
-  background: #4B4B67; /* tailwind gray-300 */
+  background: #4b4b67; /* tailwind gray-300 */
   opacity: 1;
   border-radius: 9999px;
   margin: 0 6px;
@@ -195,15 +200,10 @@ body {
   width: 200px;
   height: 200px;
   border-radius: 9999px;
-  background: radial-gradient(
-    circle at 30% 30%,
-    var(--color-accent) 0%,
-    var(--color-primary) 50%,
-    #f8333c 90%
-  );
-  filter: blur(80px);
+  background: var(--color-accent);
+  filter: blur(100px);
   mix-blend-mode: screen;
-  opacity: 0.9;
+  opacity: 0.6;
   transform: translate(-50%, -50%);
   will-change: transform;
 }
