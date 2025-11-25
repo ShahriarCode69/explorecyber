@@ -21,8 +21,7 @@ export default function CyberSecurityForm() {
 
   const [status, setStatus] = useState(null);
 
-  const SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbwwHNZzRgUK0SaBhzF0FqknS-RGZqdulDEElzeDePWMWtRMujcYJ-FGQ8rA2JO5ojOvIA/exec";
+  const SCRIPT_URL = process.env.CONTACT_FORM_SCRIPT;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
