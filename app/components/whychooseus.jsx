@@ -16,10 +16,6 @@ export default function WhyChooseUs() {
     <section className="section mx container flex flex-col lg:flex-row lg:items-center lg:justify-center lg:gap-16">
       <div
         className="w-full lg:w-[45%]"
-        initial={{ x: -50, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.3 }}
       >
         <p className="mb-2 text-base uppercase md:text-xl">Why choose us</p>
         <h2 className="heading-md mb-2">Security done right. No shortcuts</h2>
@@ -46,10 +42,6 @@ export default function WhyChooseUs() {
       </div>
       <div
         className="w-full lg:w-[55%]"
-        initial={{ x: 50, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.3 }}
       >
         <Image
           quality={100}

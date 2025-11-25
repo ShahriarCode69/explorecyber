@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import Marquee from "@/app/components/ui/marquee";
 import { FaStar } from "react-icons/fa";
+import Image from "next/image";
 
 const reviews = [
   {
@@ -61,12 +62,14 @@ const ReviewCard = ({ img, name, role, body }) => {
       </div>
       <div className="relative z-10">
         <div className="flex flex-row items-center gap-2">
-          <img
+          <Image
             className="rounded-full"
-            width="32"
-            height="32"
-            alt=""
+            width={32}
+            height={32}
+            alt={name}
             src={img}
+            loading="lazy"
+            sizes="32px"
           />
           <div className="mb-4 flex w-full items-center justify-between">
             <div className="flex flex-col">

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 export default function WorkCard({
   category,
@@ -64,10 +65,13 @@ export default function WorkCard({
         {/* Image */}
         <div className="w-full flex-1 lg:w-auto">
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-purple-600 via-purple-800 to-black">
-            <img
+            <Image
               src={image}
               alt={title}
-              className="h-full w-full object-cover transition duration-300 group-hover:scale-130"
+              fill
+              loading="lazy"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover transition duration-300 group-hover:scale-130"
             />
           </div>
         </div>

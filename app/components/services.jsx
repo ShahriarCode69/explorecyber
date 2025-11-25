@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 export default function Services() {
   const services = [
@@ -64,9 +65,13 @@ export default function Services() {
               </div>
               <div className="relative z-10">
                 <div className="mb-4 inline-flex h-15 w-15 items-center justify-center rounded-md bg-gradient-to-b from-[#F8333C] to-[#780005] p-3">
-                  <img
+                  <Image
                     src={`/icons/${service.icon}`}
                     alt={`Icon of ${service.icon}`}
+                    width={56}
+                    height={56}
+                    loading="lazy"
+                    className="h-14 w-14 object-contain"
                   />
                 </div>
                 <p className="w-12">{service.label}</p>

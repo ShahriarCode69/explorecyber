@@ -10,7 +10,7 @@ const CaseStudyCard = ({
     "Weak JWT token signing key",
   ],
   outcome = "After impressing our penetration test reports for the platform, eliminated all critical risks and successfully passed investor due-diligence",
-  imageUrl = null,
+  imageUrl = "/images/cs1.png",
 }) => {
   return (
     <div className="mx-auto w-full p-4">
