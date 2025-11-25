@@ -1,12 +1,12 @@
 import { Funnel_Display } from "next/font/google";
 import "./globals.css";
 
-import { ReactLenis } from "lenis/react";
-
 import Navbar from "./components/navbar";
 import LenisProvider from "./components/LenisProvider";
 import CustomCursor from "./components/CustomCursor";
 import Footer from "./components/footer";
+
+import { ReactLenis } from "@/app/utils/lenis";
 
 const funnelDisplay = Funnel_Display({
   variable: "--font-funnel-display",
@@ -123,12 +123,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${funnelDisplay.variable} antialiased`}>
-        <CustomCursor />
-        <Navbar />
-        {children}
-        <Footer />
-      </body>
+      <ReactLenis root>
+        <body className={`${funnelDisplay.variable} antialiased`}>
+          <CustomCursor />
+          <Navbar />
+          {children}
+          <Footer />
+        </body>
+      </ReactLenis>
     </html>
   );
 }

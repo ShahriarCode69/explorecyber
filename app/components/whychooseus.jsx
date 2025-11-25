@@ -3,7 +3,6 @@
 import Image from "next/image";
 import React from "react";
 import { FaCheck } from "react-icons/fa";
-import { motion } from "framer-motion";
 import benefitsImage from "@/public/images/whychooseus.png"
 
 const benefits = [
@@ -15,7 +14,7 @@ const benefits = [
 export default function WhyChooseUs() {
   return (
     <section className="section mx container flex flex-col lg:flex-row lg:items-center lg:justify-center lg:gap-16">
-      <motion.div
+      <div
         className="w-full lg:w-[45%]"
         initial={{ x: -50, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
@@ -44,8 +43,8 @@ export default function WhyChooseUs() {
             </div>
           ))}
         </div>
-      </motion.div>
-      <motion.div
+      </div>
+      <div
         className="w-full lg:w-[55%]"
         initial={{ x: 50, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
@@ -57,7 +56,7 @@ export default function WhyChooseUs() {
           src={benefitsImage}
           alt="why choose us section image"
         />
-      </motion.div>
+      </div>
     </section>
   );
 }
