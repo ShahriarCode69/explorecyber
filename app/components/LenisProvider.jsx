@@ -4,18 +4,12 @@ import Lenis from "@studio-freight/lenis";
 
 export default function LenisProvider({ children }) {
   useEffect(() => {
-    // Check if user prefers reduced motion
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
     const lenis = new Lenis({
-      smooth: !prefersReducedMotion,
+      smooth: true,
       smoothTouch: true,
-      duration: 0.8, // Lower = less CPU usage, still smooth
-      lerp: 0.08, // GPU-friendly smoothing
-      // Use built-in easing (much lighter)
-      easing: (t) => t,
+      lerp: 2, // lightweight smoothing (recommended)
+      // duration removed — reduces CPU load
+      // easing removed — uses default (super light)
     });
 
     let frame;
@@ -25,25 +19,10 @@ export default function LenisProvider({ children }) {
       frame = requestAnimationFrame(raf);
     };
 
-    // Start RAF loop only when page is visible
-    const start = () => {
-      if (!frame) frame = requestAnimationFrame(raf);
-    };
-
-    const stop = () => {
-      cancelAnimationFrame(frame);
-      frame = null;
-    };
-
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) stop();
-      else start();
-    });
-
-    start();
+    requestAnimationFrame(raf);
 
     return () => {
-      stop();
+      cancelAnimationFrame(frame);
       lenis.destroy();
     };
   }, []);
