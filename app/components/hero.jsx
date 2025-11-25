@@ -50,7 +50,7 @@ export default function Hero() {
             src={heroVid}
             theme={VimeoNova}
             accentColor="#fff"
-            className="overflow-hidden rounded-xl"
+            className="overflow-hidden rounded-xl mt-12"
             style={{
               "--media-primary-color": "#f7f7f7",
               "--media-secondary-color": "#141426",
