@@ -28,7 +28,7 @@ export default function CaseStudy() {
       ],
       outcome:
         "After implementing our remediation plan, the platform eliminated all critical risks and successfully passed investor due-diligence ",
-      imageUrl: "/images/cs1.png",
+      imageUrl: "/images/cs1.webp",
     },
     {
       catergory: "E-Commerce",
@@ -42,7 +42,7 @@ export default function CaseStudy() {
       ],
       outcome:
         "The fixes significantly strengthened their checkout security and reduced fraudulent activities.",
-      imageUrl: "/images/cs2.png",
+      imageUrl: "/images/cs2.webp",
     },
     {
       catergory: "SAAS",
@@ -56,7 +56,7 @@ export default function CaseStudy() {
       ],
       outcome:
         "Their audit readiness improved dramatically, and they avoided major downtime or data exposure incidents.",
-      imageUrl: "/images/cs3.png",
+      imageUrl: "/images/cs3.webp",
     },
   ];
 

@@ -1,7 +1,7 @@
 import React from "react";
 import CyberSecurityForm from "./cybersecurityform";
 import Image from "next/image";
-import contactForm from "@/public/images/contactForm.png";
+import contactForm from "@/public/images/contactForm.webp";
 
 export default function Contact() {
   return (
