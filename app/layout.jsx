@@ -2,7 +2,6 @@ import { Funnel_Display } from "next/font/google";
 import "./globals.css";
 
 import Navbar from "./components/navbar";
-import LenisProvider from "./components/LenisProvider";
 import CustomCursor from "./components/CustomCursor";
 import Footer from "./components/footer";
 
