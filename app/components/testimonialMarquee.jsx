@@ -1,44 +1,43 @@
 import { cn } from "@/lib/utils";
 import Marquee from "@/app/components/ui/marquee";
 import { FaStar } from "react-icons/fa";
-import Image from "next/image";
 
 const reviews = [
   {
     name: "Maria Alvarez",
     role: "CTO - NovaRetail Solutions",
     body: "ExploreCyber’s penetration test uncovered critical flaws we didn’t even know existed. Their report was clear, prioritized, and helped us fix issues in days — not weeks..",
-    img: "https://avatar.vercel.sh/jack",
+    img: "/icons/womanAvatar.png",
   },
   {
     name: "James O’Neil",
     role: "Head of IT Operations",
     body: "Fast, efficient and friendly. ExploreCyber gave us an actionable roadmap to strengthen our cloud posture — excellent ROI.",
-    img: "https://avatar.vercel.sh/jill",
+    img: "/icons/manAvatar.png",
   },
   {
     name: "Aisha Rahman",
     role: "Product Manager",
     body: "Their web-app security review saved us from a potentially costly breach. The team were professional and the remediation guidance was superb.",
-    img: "https://avatar.vercel.sh/john",
+    img: "/icons/womanAvatar.png",
   },
   {
     name: "Daniel Kim",
     role: "CEO",
     body: "We engaged ExploreCyber for a one-off audit and ended up signing a long-term servicing contract. High quality and trustworthy.",
-    img: "https://avatar.vercel.sh/jane",
+    img: "/icons/manAvatar.png",
   },
   {
     name: "Priya Desai",
     role: "Head of Compliance",
     body: "Their combined vulnerability assessment and compliance checklist made our audit painless. Clear evidence and excellent communication.",
-    img: "https://avatar.vercel.sh/jenny",
+    img: "/icons/womanAvatar.png",
   },
   {
     name: "James",
     role: "CTO",
     body: "ExploreCyber’s penetration test uncovered critical flaws we didn’t even know existed. Their report was clear, prioritized, and helped us fix issues in days — not weeks.",
-    img: "https://avatar.vercel.sh/james",
+    img: "/icons/manAvatar.png",
   },
 ];
 
@@ -61,17 +60,14 @@ const ReviewCard = ({ img, name, role, body }) => {
         <div className="from-gradientLight to-gradientDark h-full w-full rounded-xl bg-gradient-to-b"></div>
       </div>
       <div className="relative z-10">
-        <div className="flex flex-row items-center gap-2">
-          <Image
-            className="rounded-full"
-            width={32}
-            height={32}
+        <div className="flex flex-row items-center gap-2 mb-4">
+          <img
+            className="rounded-full w-[32px] h-[32px]"
             alt={name}
             src={img}
             loading="lazy"
-            sizes="32px"
           />
-          <div className="mb-4 flex w-full items-center justify-between">
+          <div className="flex w-full items-center justify-between">
             <div className="flex flex-col">
               <figcaption className="text-sm font-medium text-white">
                 {name}

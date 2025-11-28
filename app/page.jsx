@@ -12,7 +12,7 @@ import Testimonials from "./components/testimonials";
 import Contact from "./components/contact";
 import FAQSection from "./components/faqsection";
 import WhenSection from "./components/whensection";
-import WorkSection from "./components/worksection";
+// import WorkSection from "./components/worksection";
 import CaseStudy from "./components/casestudy";
 // import { useEffect } from "react";
 // import Lenis from "lenis"
@@ -36,7 +36,7 @@ export default function Home() {
      <About/>
      <Services/>
      <WhyChooseUs/>
-     <WorkSection/>
+     {/* <WorkSection/> */}
      <CaseStudy/>
      <Testimonials/>
      <Expertise/>

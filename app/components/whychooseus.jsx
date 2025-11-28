@@ -3,7 +3,6 @@
 import Image from "next/image";
 import React from "react";
 import { FaCheck } from "react-icons/fa";
-import benefitsImage from "@/public/images/whychooseus.png"
 
 const benefits = [
   "Actionable reports your team understands",
@@ -43,10 +42,10 @@ export default function WhyChooseUs() {
       <div
         className="w-full lg:w-[55%]"
       >
-        <Image
-          quality={100}
-          src={benefitsImage}
+        <img
+          src="/images/whychooseus.png"
           alt="why choose us section image"
+          loading="lazy"
         />
       </div>
     </section>

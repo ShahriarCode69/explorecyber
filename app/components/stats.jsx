@@ -14,7 +14,6 @@ const AnimatedNumber = ({ value, suffix = "", decimals = 0 }) => {
 
   const isInView = useInView(ref, {
     once: true,
-    margin: "-150px 0px -150px 0px",
   });
 
   // Animate when in view

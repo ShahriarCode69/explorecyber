@@ -1,7 +1,5 @@
 import React from "react";
 import CyberSecurityForm from "./cybersecurityform";
-import Image from "next/image";
-import contactForm from "@/public/images/contactForm.webp";
 
 export default function Contact() {
   return (
@@ -24,12 +22,10 @@ export default function Contact() {
           {/* Image section */}
           <div className="relative min-h-[400px] w-full flex-shrink-0 overflow-hidden rounded-lg lg:min-h-0 lg:flex-1">
             <div className="absolute inset-0">
-              <Image
-                src={contactForm}
+              <img
+                src="/images/contactForm.webp"
                 alt="Contact"
-                fill
                 className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 from-35% to-transparent"></div>
 

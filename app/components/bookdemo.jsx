@@ -1,6 +1,4 @@
 import React from "react";
-import Image from "next/image";
-import contactForm from "@/public/images/contactForm.webp";
 import BookDemoForm from "./bookdemoform";
 
 export default function BookDemo() {
@@ -18,12 +16,10 @@ export default function BookDemo() {
 				{/* Image section - appears second on mobile, right on desktop */}
 				<div className="relative min-h-[400px] w-full flex-shrink-0 overflow-hidden rounded-lg lg:min-h-0 lg:flex-1">
 					<div className="absolute inset-0">
-						<Image
-							src={contactForm}
+						<img
+							src="/images/contactForm.webp"
 							alt="Contact"
-							fill
 							className="object-cover"
-							sizes="(max-width: 1024px) 100vw, 50vw"
 						/>
 						<div className="absolute inset-0 bg-gradient-to-t from-black/80 from-35% to-transparent"></div>
 					<div className="absolute bottom-4 left-4 z-10 flex max-w-[30ch] flex-col gap-3 text-white sm:bottom-6 sm:left-6 sm:gap-4">
