@@ -1,5 +1,7 @@
 "use client";
 
+import { MdArrowForward } from "react-icons/md";
+
 import React from "react";
 import LogoImage from "@/public/logo.svg";
 import Image from "next/image";
@@ -73,14 +75,18 @@ export default function Footer() {
           ))}
         </div>
       </div>
-      <p className="mb-2 text-sm text-white/50">
-        Made with 💖 by{" "}
+      <p className="mb-2 flex gap-1 text-sm text-white/50">
+        Developed by{" "}
         <a
           target="_blank"
-          className="hover:text-accent"
+          className="hover:text-accent group flex underline items-center transition duration-300"
           href="https://shahriarcode.vercel.app/"
         >
           SHAHRIAR
+          <MdArrowForward
+            size={18}
+            className="-rotate-45"
+          />
         </a>
       </p>
     </footer>
